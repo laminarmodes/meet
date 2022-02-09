@@ -11,7 +11,7 @@ THe app can be found at https://laminarmodes.github.io/meet/
 ### Feature 1 - It must be able to filter events by city
 #### ***Story: As a user, I should be able to filter events by city, so that I scan see a list of events for my preferred city***
 
-        *Scenario 1: When user hasn’t searched for a city, show upcoming events from all cities*.
+        *Scenario 1: When user hasn’t searched for a city, show upcoming events from all cities.*
             - Given user hasn’t searched for any city
             - When the user opens the app
             - Then the user should see a list of all upcoming events
@@ -70,6 +70,7 @@ THe app can be found at https://laminarmodes.github.io/meet/
             - When the user changes city or time range
             - They should see an error (because there is no cached data for those filter settings)
 
+
 ### Feature 5: It must display a chart showing the upcoming events by city so that I know which events are organised in each city
 #### ***Story: I want to see upcoming events by city so that I can compare different cities***
 
@@ -78,6 +79,6 @@ THe app can be found at https://laminarmodes.github.io/meet/
             - When they select an option to see number of events by city 
             - A chart showing number of events by city is displayed
 
-            ### Non-Feature: It must add an app shortcut to the user’s home screen (handled by the OS so no scenario has been created since no test will be written)
+### Non-Feature: It must add an app shortcut to the user’s home screen (handled by the OS so no scenario has been created since no test will be written)
 #### ***Story: As a want a shortcut on my home screen so that I can access the app directly***
 
