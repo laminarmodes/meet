@@ -9,12 +9,19 @@ THe app can be found at https://laminarmodes.github.io/meet/
 ## Features, User Stories and Scenarios
 
 
-### Feature 1: It must be able to filter events by city
+### Feature 1 - It must be able to filter events by city
 #### User Story: As a user, I should be able to filter events by city, so that I scan see a list of events for my preferred city
-        - Scenario 1: When user hasn’t searched for a city, show upcoming events from all cities.
-            - Given user hasn’t searched for any cityWhen the user opens the appThen the user should see a list of all upcoming events
+
+        * Scenario 1: When user hasn’t searched for a city, show upcoming events from all cities.
+            - Given user hasn’t searched for any city
+            - When the user opens the app
+            - Then the user should see a list of all upcoming events
+
         - Scenario 2: User should see a list of suggestions when they search for a city.
-            - Given the main page is openWhen user starts typing in the city textboxThen the user should see a list of cities (suggestions) that match what they’ve typed
+            Given the main page is open
+            When user starts typing in the city textbox
+            Then the user should see a list of cities (suggestions) that match what they’ve typed
+
         - Scenario 3: User can select a city from the suggested list.
             - Given the user was typing “Berlin” in the city textboxAnd the list of suggested cities is showingWhen the user selects a city (e.g., “Berlin, Germany”) from the listThen their city should be changed to that city (i.e., “Berlin, Germany”)And the user should receive a list of upcoming events in that city
 
@@ -32,7 +39,7 @@ THe app can be found at https://laminarmodes.github.io/meet/
             - Given the user has expanded the event details
             - When the user collapses the even details
             - The details are no longer visible in the UI
-            
+
 ### Feature 3: It must specify the number of events
     - User Story: As a user, I want to know the number of events, so that I know how many events are going on during a period of time
         - Scenario 1: When user hasn’t specified a number, 32 is the default number.
