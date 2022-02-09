@@ -10,9 +10,9 @@ THe app can be found at https://laminarmodes.github.io/meet/
 
 
 ### Feature 1 - It must be able to filter events by city
-#### User Story: As a user, I should be able to filter events by city, so that I scan see a list of events for my preferred city
+#### ***As a user, I should be able to filter events by city, so that I scan see a list of events for my preferred city***
 
-        * Scenario 1: When user hasn’t searched for a city, show upcoming events from all cities.
+        _Scenario 1: When user hasn’t searched for a city, show upcoming events from all cities._
             - Given user hasn’t searched for any city
             - When the user opens the app
             - Then the user should see a list of all upcoming events
