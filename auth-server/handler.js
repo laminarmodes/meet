@@ -91,8 +91,11 @@ module.exports.getAccessToken = async (event) => {
     .then((token) => {
       // Respond with OAuth token 
       return {
+        headers: {
+          "Access-Control-Allow-Origin": "*"
+        },
         statusCode: 200,
-        body: JSON.stringify(token),
+        body: JSON.stringify(token)
       };
     })
     .catch((err) => {
@@ -100,7 +103,58 @@ module.exports.getAccessToken = async (event) => {
       console.error(err);
       return {
         statusCode: 500,
-        body: JSON.stringify(err),
+        body: JSON.stringify(err)
       };
     });
+};
+
+module.exports.getCalendarEvents = async (event) => {
+
+  const oAuth2Client = new google.auth.OAuth2(
+    client_id,
+    client_secret,
+    redirect_uris[0]
+  );
+
+  const access_token = decodeURIComponent(`${event.pathParameters.code}`);
+  oAuth2Client.setCredentials({ access_token });
+
+  return new Promise((resolve, reject) => {
+
+    calendar.events.list(
+      {
+        calendarId: calendar_id,
+        auth: oAuth2Client,
+        timeMin: new Date().toISOString(),
+        singleEvents: true,
+        orderBy: "startTime",
+      },
+      (error, response) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(response);
+        }
+      }
+    );
+
+    // rest of code will go here
+  }).then((results) => {
+    return {
+      headers: {
+        "Access-Control-Allow-Origin": "*"
+      },
+      statusCode: 200,
+      body: JSON.stringify({ events: results.data.items })
+    };
+  }).catch((err) => {
+    console.err(err);
+    return {
+      headers: {
+        "Access-Control-Allow-Origin": "*"
+      },
+      statusCode: 500,
+      body: JSON.stringify(err)
+    };
+  });
 };
