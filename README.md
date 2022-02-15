@@ -82,3 +82,55 @@ THe app can be found at https://laminarmodes.github.io/meet/
 ### Non-Feature: It must add an app shortcut to the user’s home screen (handled by the OS so no scenario has been created since no test will be written)
 #### ***Story: As a want a shortcut on my home screen so that I can access the app directly***
 
+## Running serverless test
+
+Inside the auth-serfer folder, deploy function to AWS Lambda
+
+```bash
+serverless deploy
+```
+
+Obtain the new endpoints and update test-auth-server.html
+
+To get the endpoint information again 
+
+```bash
+serverless info
+```
+
+Inside static-site-test folder (contianing test-auth-server.html)
+
+```bash
+http-server
+```
+
+Open http://127.0.0.1:8080/test-auth-server.html and copy code after 'code=" and before "&scope"
+
+In root folder, to deploy to github
+
+```bash
+npm run deploy
+```
+
+Don't forget to also update master
+
+## Dependencies
+
+```bash
+npm install --save-dev enzyme
+```
+
+Since having npm 7+
+
+```bash
+npm install --save-dev --legacy-peer-deps @wojtekmaj/enzyme-adapter-react-17
+```
+
+## Running tests
+
+```bash
+npm run test
+```
+
+
+
