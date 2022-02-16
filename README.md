@@ -132,5 +132,16 @@ npm install --save-dev --legacy-peer-deps @wojtekmaj/enzyme-adapter-react-17
 npm run test
 ```
 
+```bash
+npm test -- --coverage
+```
+
+## To see the UI
+
+Stop current tests and run 
+
+```bash
+npm run start
+```
 
 

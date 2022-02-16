@@ -10,7 +10,7 @@ describe('<CitySearch /> component', () => {
 
     beforeAll(() => {
         locations = extractLocations(mockData);
-        CitySearchWrapper = shallow(<CitySearch locations={locations} />);
+        CitySearchWrapper = shallow(<CitySearch locations={locations} updateEvents={() => { }} />);
     });
 
     // Does an element of the class name city exists within the CitySearchWrapper
