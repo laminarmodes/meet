@@ -25,6 +25,8 @@ THe app can be found at https://laminarmodes.github.io/meet/
             - Given the user was typing “Berlin” in the city textboxAnd the list of suggested cities is showing
             - When the user selects a city (e.g., “Berlin, Germany”) from the list
             - Then their city should be changed to that city (i.e., “Berlin, Germany”)And the user should receive a list of upcoming events in that city
+            - And the list of suggestions should disappear.
+            - And the user should receive a list of upcoming events in that city.
 
 ### Feature 2: It must be able to show/hide an event’s details
  #### ***Story: As a user, I should be able to show/hide even details so that I can learn more about an event***
@@ -124,6 +126,14 @@ Since having npm 7+
 
 ```bash
 npm install --save-dev --legacy-peer-deps @wojtekmaj/enzyme-adapter-react-17
+```
+
+```bash
+npm install axios --save
+```
+
+```bash
+npm install --save nprogress
 ```
 
 ## Running tests
