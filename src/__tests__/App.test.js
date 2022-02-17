@@ -123,4 +123,34 @@ describe('<App /> integration', () => {
         expect(AppWrapper.state('events')).toEqual(allEvents);
         AppWrapper.unmount();
     });
+
+    // Test Number of Events - prop
+    test('app passes numberOfEvents as a prop', () => {
+        const AppWrapper = mount(<App />);
+        const AppNumberOfEventsState = AppWrapper.state('numberOfEvents');
+        expect(AppNumberOfEventsState).not.toEqual(undefined);
+        expect(AppWrapper.find(NumberOfEvents).props().numberOfEvents).toEqual(AppNumberOfEventsState);
+        AppWrapper.unmount();
+    });
+
+    // Test App number of Events - state
+    test('when number of events is changed, app state is changed', () => {
+        let customValue = 12;
+        const AppWrapper = mount(<App />);
+        const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+        NumberOfEventsWrapper.find('.number-of-events-input').simulate('change', { target: { value: customValue } });
+        expect(AppWrapper.state('numberOfEvents')).toBe(customValue)
+        //AppWrapper.unmount();
+    });
+
+    // Test App actual number of events - displayed
+    test('number of events changes and actual number of events displayed changes', async () => {
+        let customValue = 5;
+        const AppWrapper = mount(<App />);
+        const numberOfEventsInput = AppWrapper.find(NumberOfEvents).find('.number-of-events-input');
+        await numberOfEventsInput.at(0).simulate('change', { target: { value: customValue } });
+        expect(AppWrapper.state('events')).toHaveLength(customValue)
+        AppWrapper.unmount();
+    });
+
 });

@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import './App.css';
+import './nprogress.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { extractLocations, getEvents } from './api';
 import axios from 'axios';
-import './nprogress.css';
+
 
 class App extends Component {
 
   state = {
     events: [],
-    locations: []
+    locations: [],
+    numberOfEvents: 32,
+    currentLocation: 'all'
   }
 
 
@@ -36,10 +39,23 @@ class App extends Component {
       const locationEvents = (location === 'all') ?
         events :
         events.filter((event) => event.location === location);
+      // console.log('number of events: ' + this.state.numberOfEvents)
+
       this.setState({
-        events: locationEvents
+        events: locationEvents.slice(0, this.state.numberOfEvents),
+        currentLocation: location
       });
+      console.log('in updateEvents, numberOfEvents=' + this.state.numberOfEvents)
     });
+  }
+
+  updateNumberOfEvents = (newNumber) => {
+
+    this.setState({
+      numberOfEvents: newNumber
+    });
+    console.log('in updateNumberOfEvents, numberOfEvents=' + this.state.numberOfEvents)
+    this.updateEvents(this.state.currentLocation);
   }
 
   render() {
@@ -50,7 +66,7 @@ class App extends Component {
         you can call it inside handleItemClicked */}
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
         <EventList events={this.state.events} />
-        <NumberOfEvents />
+        <NumberOfEvents numberOfEvents={this.state.numberOfEvents} updateNumberOfEvents={this.updateNumberOfEvents} />
       </div>
     );
 
@@ -58,19 +74,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-
-
-// function App() {
-
-//   return (
-//     <div className="App">
-//       <CitySearch />
-//       <EventList />
-//       <NumberOfEvents />
-//     </div>
-//   );
-// }
-
-// export default App;

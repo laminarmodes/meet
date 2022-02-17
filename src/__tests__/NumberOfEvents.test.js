@@ -9,7 +9,7 @@ describe('<NumberOfEvents /> component', () => {
     let NumberOfEventsWrapper;
 
     beforeAll(() => {
-        NumberOfEventsWrapper = shallow(<NumberOfEvents numberOfEvents={3} />);
+        NumberOfEventsWrapper = shallow(<NumberOfEvents numberOfEvents={3} updateNumberOfEvents={() => { }} />);
     });
 
     // Ensure textbox is rendered correctly
