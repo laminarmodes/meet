@@ -154,4 +154,26 @@ Stop current tests and run
 npm run start
 ```
 
+## BDD Tests
 
+```bash
+npm i jest-cucumber --save-dev
+```
+
+## End to end tests
+
+```bash
+npm i --save-dev puppeteer
+```
+
+Before running test, app needs to be running
+
+```bash
+npm run start
+```
+
+Then to run end-to-end test
+
+```bash
+npm run test
+```
