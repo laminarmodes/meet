@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { InfoAlert } from './Alert';
 
 class CitySearch extends Component {
 
@@ -17,17 +18,37 @@ class CitySearch extends Component {
         const suggestions = this.props.locations.filter((location) => {
             return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
         });
+
         this.setState({
-            query: value,
-            suggestions,
-            showSuggestions: undefined
-        });
-    }
+            showSuggestions: true
+        })
+        if (suggestions.length === 0) {
+            this.setState({
+                query: value,
+                infoText: 'We cannot find the city you are looking for, please try another city'
+            })
+        } else {
+            return this.setState({
+                query: value,
+                suggestions,
+                infoText: ''
+            });
+        }
+
+        // this.setState({
+        //     query: value,
+        //     suggestions,
+        //     showSuggestions: undefined
+        // });
+    };
 
     handleItemClicked = (suggestion) => {
+
         this.setState({
             query: suggestion,
-            showSuggestions: false
+            showSuggestions: false,
+            suggestions: [],
+            infoText: ''
         });
 
         // You have passed in updateEvents as a prop and can now call it
@@ -38,12 +59,16 @@ class CitySearch extends Component {
     render() {
         return (
             <div className="CitySearch">
-                <input type="text"
-                    className="city"
-                    value={this.state.query}
-                    onChange={this.handleInputChanged}
-                    onFocus={() => { this.setState({ showSuggestions: true }) }}
-                />
+
+                <div><InfoAlert text={this.state.infoText} /></div>
+                <div>
+                    <input type="text"
+                        className="city"
+                        value={this.state.query}
+                        onChange={this.handleInputChanged}
+                        onFocus={() => { this.setState({ showSuggestions: true }) }}
+                    />
+                </div>
                 <ul className="suggestions" style={this.state.showSuggestions ? {} : { display: 'none' }}>
                     {
                         this.state.suggestions.map((suggestion) => (

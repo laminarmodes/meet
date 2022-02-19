@@ -63,13 +63,12 @@ class App extends Component {
       <div className="App">
         {/* Pass in updateEvents method as a prop to CitySearch so that
         you can call it inside handleItemClicked */}
-        Search City
+        <p>Search City</p>
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
         <br /><br /><br />
-        Events List
+        <p> Events List</p>
         <EventList events={this.state.events} />
-        <br /><br /><br />
-        Number of Events
+        <p>Number of Events</p>
         <NumberOfEvents numberOfEvents={this.state.numberOfEvents} updateNumberOfEvents={this.updateNumberOfEvents} />
       </div>
     );
