@@ -23,6 +23,7 @@ describe('<App /> component', () => {
     // Test to see that the EventList Component Exists
     test('render list of events', () => {
 
+        //
         // Shallow rendered app component
         // Checks how many EventList components there are in the AppWrapper
         // Ensures there exists only one EventList component with the App component
