@@ -5,7 +5,7 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { extractLocations, getEvents } from './api';
-import axios from 'axios';
+import { OfflineAlert } from './Alert';
 
 
 class App extends Component {
@@ -14,7 +14,8 @@ class App extends Component {
     events: [],
     locations: [],
     numberOfEvents: 32,
-    currentLocation: 'all'
+    currentLocation: 'all',
+    networkStatusText: ''
   }
 
 
@@ -28,6 +29,15 @@ class App extends Component {
         });
       }
     });
+    if (!navigator.onLine) {
+      this.setState({
+        networkStatusText: 'You are offline'
+      })
+    } else {
+      this.setState({
+        networkStatusText: ''
+      })
+    }
   }
 
   componentWillUnmount() {
@@ -69,9 +79,10 @@ class App extends Component {
         <p>Number of Events</p>
         <NumberOfEvents numberOfEvents={this.state.numberOfEvents} updateNumberOfEvents={this.updateNumberOfEvents} />
         <br /><br /><br />
+        <OfflineAlert text={this.state.networkStatusText} />
+        <br />
         <p> Events List</p>
         <EventList events={this.state.events} />
-
       </div>
     );
 
