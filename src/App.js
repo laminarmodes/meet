@@ -31,7 +31,7 @@ class App extends Component {
     });
     if (!navigator.onLine) {
       this.setState({
-        networkStatusText: 'You are offline'
+        networkStatusText: 'You are offline, loading data from last connection'
       })
     } else {
       this.setState({
