@@ -1,0 +1,13 @@
+.city {
+    font-size: 12pt;
+    font-weight: bold;
+    outline: none;
+    border-style: none;
+    background: #e2d297;
+    border-radius: 16px;
+    box-shadow: inset 9.91px 9.91px 15px #CEBF89, inset -9.91px -9.91px 15px #F6E5A5;
+    padding: 12px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    color: #0373fc;
+}

@@ -4,8 +4,11 @@ import './nprogress.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
-import { extractLocations, getEvents } from './api';
+import { extractLocations, getEvents, checkToken, getAccessToken } from './api';
 import { OfflineAlert } from './Alert';
+import WelcomeScreen from './WelcomeScreen';
+import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import EventGenre from './EventGenre';
 
 
 class App extends Component {
@@ -15,20 +18,29 @@ class App extends Component {
     locations: [],
     numberOfEvents: 32,
     currentLocation: 'all',
-    networkStatusText: ''
+    networkStatusText: '',
+    showWelcomeScreen: undefined
   }
 
 
-  componentDidMount() {
+  async componentDidMount() {
     this.mounted = true;
-    getEvents().then((events) => {
-      if (this.mounted) {
-        this.setState({
-          events,
-          locations: extractLocations(events)
-        });
-      }
-    });
+    const accessToken = localStorage.getItem('access_token');
+    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+    const searchParams = new URLSearchParams(window.location.search);
+    const code = searchParams.get("code");
+    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+
+    if ((code || isTokenValid && this.mounted)) {
+      getEvents().then((events) => {
+        if (this.mounted) {
+          this.setState({
+            events,
+            locations: extractLocations(events)
+          });
+        }
+      });
+    }
     if (!navigator.onLine) {
       this.setState({
         networkStatusText: 'You are offline, loading data from last connection'
@@ -67,22 +79,62 @@ class App extends Component {
     this.updateEvents(this.state.currentLocation);
   }
 
+  getData = () => {
+    const { locations, events } = this.state;
+    const data = locations.map((location) => {
+      const number = events.filter((event) => event.location === location).length;
+      const city = location.split(',').shift();
+      return { city, number };
+    })
+    return data;
+  };
+
   render() {
+
+    const { locations, numberOfEvents, networkStatusText, events, showWelcomeScreen } = this.state;
+
+    if (this.state.showWelcomeScreen === undefined) return <div className="App" />
 
     return (
       <div className="App">
         {/* Pass in updateEvents method as a prop to CitySearch so that
         you can call it inside handleItemClicked */}
-        <p>Search City</p>
-        <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
-        <br /><br /><br />
-        <p>Number of Events</p>
-        <NumberOfEvents numberOfEvents={this.state.numberOfEvents} updateNumberOfEvents={this.updateNumberOfEvents} />
-        <br /><br /><br />
-        <OfflineAlert text={this.state.networkStatusText} />
+        <h1 className='title'>Meet</h1>
+
+        <div className="city-search">
+          <h3>Search City</h3>
+          <CitySearch locations={locations} updateEvents={this.updateEvents} />
+        </div>
+
         <br />
-        <p> Events List</p>
-        <EventList events={this.state.events} />
+
+        <div className="number-of-events">
+          <h3>Number of Events</h3>
+          <NumberOfEvents numberOfEvents={numberOfEvents} updateNumberOfEvents={this.updateNumberOfEvents} />
+        </div>
+
+        <br /><br /><br />
+        <OfflineAlert text={networkStatusText} />
+        <br />
+        <div className="data-vis-wrapper">
+          <EventGenre className="pie-chart" events={events} />
+          <ResponsiveContainer height={400} >
+            <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }} >
+              <CartesianGrid />
+              <XAxis type="category" dataKey="city" name="City" />
+              <YAxis type="number" dataKey="number" name="Number of events" allowDecimals={false} />
+              <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+              <Scatter
+                data={this.getData()}
+                fill="#0373fc" />
+            </ScatterChart>
+          </ResponsiveContainer>
+        </div>
+        <div className="events-list-container">
+          <h2 className="events-list-text"> Events List</h2>
+          <EventList events={events} />
+        </div>
+        <WelcomeScreen showWelcomeScreen={showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
       </div>
     );
 

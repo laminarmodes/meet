@@ -39,12 +39,15 @@
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
 .App {
-  text-align: center;
+  /* text-align: center; */
   padding: 2% 5%;
+  background-color: #e2d297;
+  
 }
 
 .App * {
   box-sizing: border-box;
+
 }
 
 ul {
@@ -116,15 +119,19 @@ input[type="number"] {
 }
 
 .event {
-  padding: 10px 10px 35px;
+  /* padding: 10px 10px 35px; */
+  padding-top: 32px;
+  padding-right: 16px;
+  padding-bottom: 32px;
+  padding-left: 16px;
   margin-bottom: 10px;
   text-align: left;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  /* border: 1px solid #ccc;
+  border-radius: 4px; */
   position: relative;
 }
 
-.details-btn {
+/* .details-btn {
   position: absolute;
   right: 5px;
   bottom: 5px;
@@ -132,7 +139,7 @@ input[type="number"] {
   border-radius: 4px;
   outline: none;
   cursor: pointer;
-}
+} */
 
 .name {
   font-size: 18px;
@@ -228,14 +235,15 @@ input[type="number"] {
   width: 18px;
   height: 18px;
 }
-.btn-text {
+
+/* .btn-text {
   float: right;
   margin: 11px 11px 0 0;
   color: #fff;
   font-size: 14px;
   letter-spacing: 0.2px;
   font-family: "Roboto";
-}
+} */
 
 
 
@@ -249,4 +257,24 @@ input[type="number"] {
     min-width: auto;
     margin: 0 auto;
   }
+}
+
+.city-search .number-of-events {
+  text-align: left;
+  justify-content: left;
+  margin-top: 20px;
+}
+
+/* .number-of-events {
+  text-align: left;
+  justify-content: left;
+  margin-top: 20px;
+} */
+
+.events-list-text {
+  text-align: left;
+}
+
+.title {
+  text-align: left;
 }

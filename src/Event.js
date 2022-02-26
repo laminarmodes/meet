@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Event.css';
 
 class Event extends Component {
 
@@ -24,34 +25,39 @@ class Event extends Component {
             <div className="event">
 
                 <div className="summary">
-                    <p>{event.summary}</p>
+                    <h2>{event.summary}</h2>
                 </div>
 
                 <div className="location">
-                    <p>{event.location}</p>
+                    <h3>{event.location}</h3>
+                </div>
+
+                <div className="status">
+                    <p><b>Status:</b> {event.status}</p>
                 </div>
 
                 {
                     this.state.isCollapsed ?
                         <div>
                             <button className="show-details" onClick={this.handleClick}>
-                                Show Details
+                                SHOW DETAILS
                             </button>
                         </div>
                         :
                         <div>
                             <button className="hide-details" onClick={this.handleClick}>
-                                Hide Details
+                                HIDE DETAILS
                             </button>
                             <div className="details">
-                                <div className="htmlLink">
-                                    <p>
-                                        {event.htmlLink}
-                                    </p>
-                                </div>
+                                <h3>Description</h3>
                                 <div className="description">
                                     <p>
                                         {event.description}
+                                    </p>
+                                </div>
+                                <div className="htmlLink">
+                                    <p>
+                                        <a href={event.htmlLink} target="_blank">Link to event</a>
                                     </p>
                                 </div>
                             </div>
