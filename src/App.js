@@ -102,14 +102,14 @@ class App extends Component {
         <h1 className='title'>Meet</h1>
 
         <div className="city-search">
-          <h3>Search City</h3>
+          <b>Search City</b>
           <CitySearch locations={locations} updateEvents={this.updateEvents} />
         </div>
 
         <br />
 
         <div className="number-of-events">
-          <h3>Number of Events</h3>
+          <b>Number of Events</b>
           <NumberOfEvents numberOfEvents={numberOfEvents} updateNumberOfEvents={this.updateNumberOfEvents} />
         </div>
 

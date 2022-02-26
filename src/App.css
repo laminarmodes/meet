@@ -78,9 +78,9 @@ input[type="number"] {
   height: 38px;
 }
 
-.city {
+/* .city {
   width: 250px;
-}
+} */
 
 .CitySearch {
   display: flex;
@@ -89,11 +89,16 @@ input[type="number"] {
   max-width: 300px;
   margin: auto;
   position: relative;
+  align-content: flex-start;
+  justify-content: flex-start;
+
+  /* text-align: left;
+  justify-content: left; */
 }
 
 .suggestions {
   width: 250px;
-  position: absolute;
+  /* position: absolute; */
   z-index: 2;
   align-self: center;
   margin: 0;
@@ -263,6 +268,9 @@ input[type="number"] {
   text-align: left;
   justify-content: left;
   margin-top: 20px;
+  position: relative;
+  /* text-align: left;
+  justify-content: left; */
 }
 
 /* .number-of-events {
