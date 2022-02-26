@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { PieChart, Pie, Sector, Cell, Tooltip, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
 
 const EventGenre = ({ events }) => {
 
-    const colors = ['#d0427f', '#f8a01f', '#528272', '#f15f4b', '#7dbeb8', '#5c69a0'];
+    // const colors = ['#440154', '#443a83', '#2c728e', '#20a486', '#75d054'];
+    const colors = ['#0d1787', '#4d1fa1', '#8022a8', '#ac2494', '#cc4976'];
 
     // useEffect will listen for changes
     // This will run when there is a change to the 'events' prop
@@ -26,24 +27,22 @@ const EventGenre = ({ events }) => {
         return data;
     };
 
-    //const colors = ['#4b2991', '#952ea0', '#d44292', '#f66d7a', '#f6a97a'];
-
     return (
         <div style={{ width: '100%', height: 300 }}>
             <ResponsiveContainer>
-                <PieChart>
+                <PieChart width={400} height={400}>
                     <Pie
-                        dataKey="value"
                         data={data}
-                        label={({ genreName, percent }) => `${genreName} ${(percent * 100).toFixed(0)}%`}>
-                        {
-                            data.map((entry, index) => {
-                                <Cell
-                                    key={`cell-${index}`}
-                                    fill={colors[index]} />
-                            })
-                        }
+                        innerRadius={20}
+                        dataKey="value"
+                        fill="#8884d8"
+                        label={({ genreName, percent }) => `${genreName} ${(percent * 100).toFixed(0)}%`}
+                        outerRadius={80}>
+                        {data.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+                        ))}
                     </Pie>
+                    {/* <Legend layout="horizontal" verticalAlign="top" align="center" height={45} /> */}
                 </PieChart>
             </ResponsiveContainer>
         </div>

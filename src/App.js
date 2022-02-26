@@ -120,9 +120,9 @@ class App extends Component {
           <EventGenre className="pie-chart" events={events} />
           <ResponsiveContainer height={400} >
             <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }} >
-              <CartesianGrid />
-              <XAxis type="category" dataKey="city" name="City" />
-              <YAxis type="number" dataKey="number" name="Number of events" allowDecimals={false} />
+              <CartesianGrid stroke="#888" strokeDasharray="5 5" />
+              <XAxis type="category" dataKey="city" label={{ value: 'City', offset: 0, position: 'insideBottom' }} name="City" />
+              <YAxis type="number" dataKey="number" label={{ value: 'Number of Events', angle: -90, position: 'insideLeft' }} name="Number of events" allowDecimals={false} />
               <Tooltip cursor={{ strokeDasharray: '3 3' }} />
               <Scatter
                 data={this.getData()}

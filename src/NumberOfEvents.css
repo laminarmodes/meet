@@ -11,3 +11,7 @@
     margin-bottom: 12px;
     color: #0373fc;
 }
+
+.number-of-events-alert {
+    position: relative;
+}
