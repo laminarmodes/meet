@@ -3,6 +3,8 @@
     font-size: 12pt;
     font-weight: bold;
     outline: none;
+    border-image: none;
+    border: none;
     border-style: none;
     background: #e2d297;
     border-radius: 16px;
