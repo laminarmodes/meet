@@ -7,6 +7,7 @@
     align-content: center;
     justify-content: center;
     text-align: center;
+    left: 0;
 }
 
 .login-button {
