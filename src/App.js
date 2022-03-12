@@ -101,25 +101,13 @@ class App extends Component {
         you can call it inside handleItemClicked */}
         <h1 className='title'>Meet</h1>
 
-        {/* <div className="city-search">
-          <b>Search City</b>
-          <CitySearch locations={locations} updateEvents={this.updateEvents} />
-        </div> */}
-
-        <br />
-
-        {/* <div className="number-of-events">
-          <b>Number of Events</b>
-          <NumberOfEvents numberOfEvents={numberOfEvents} updateNumberOfEvents={this.updateNumberOfEvents} />
-        </div> */}
-
-        <br /><br /><br />
-        <OfflineAlert text={networkStatusText} />
-        <br />
+        {/* <br /><br /><br /> */}
+        <span><OfflineAlert text={networkStatusText} /></span>
+        {/* <br /> */}
         <div className="data-vis-wrapper">
           <span>
-            <div><CitySearch locations={locations} updateEvents={this.updateEvents} /></div>
-            <div><NumberOfEvents numberOfEvents={numberOfEvents} updateNumberOfEvents={this.updateNumberOfEvents} /></div>
+            <div className="city-search"><CitySearch locations={locations} updateEvents={this.updateEvents} /></div>
+            <div className="number-of-events"><NumberOfEvents numberOfEvents={numberOfEvents} updateNumberOfEvents={this.updateNumberOfEvents} /></div>
           </span>
           <EventGenre className="pie-chart" events={events} />
           <ResponsiveContainer height={400} >
