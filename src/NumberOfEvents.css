@@ -3,9 +3,10 @@
     font-weight: bold;
     outline: none;
     border: none !important; 
-    background: #f8f1d9;
     border-radius: 16px;
-    box-shadow: inset 9.91px 9.91px 15px #CEBF89, inset -9.91px -9.91px 15px #F6E5A5;
+    /* background: #C8CEEA; */
+    background: #f7f7f7;
+    box-shadow: inset 9.91px 9.91px 15px #B6BBD5, inset -9.91px -9.91px 15px #DAE1FF;
     padding: 12px;
     margin-top: 12px;
     margin-bottom: 12px;
